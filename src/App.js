@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+// import Card from './components/Card.tsx';
+import Navbar from './component/Navbar.tsx';
+import Detail from './component/Detail.tsx';
+import { Route, Routes } from "react-router-dom";
+import React, { useState } from 'react';
 
 function App() {
+
+  const [utils, setUtils]=useState("");
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar utils={utils} setUtils={setUtils}/>
+    <Routes>
+      <Route path="/" element={<Detail utils={utils} setUtils={setUtils}/>}/>
+    </Routes>
+    </>
   );
 }
 

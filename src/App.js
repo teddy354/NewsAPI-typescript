@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 // import Card from './components/Card.tsx';
 import Navbar from './component/Navbar.tsx';

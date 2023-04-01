@@ -2,20 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 import { Article } from '../utils/type'
-import dotenv from "dotenv";
+
 
 const { Meta } = Card;
 interface IDetail {
   utils: string;
 }
 
-dotenv.config();
-
 const App = ( props:IDetail ) => {
   const [articles, setArticles] = useState<Article[]>([]);
 
     const apiUrl = "https://newsapi.org/v2/top-headlines";
-    const apiKey = "3b19ecc6f7a44cc1afc9ab92f4188ba8";
+    const apiKey = process.env.REACT_APP_API_KEY;
     const source = "bbc-news";
 
   useEffect(() => {
@@ -25,12 +23,6 @@ const App = ( props:IDetail ) => {
       .then((response) => response.json())
       .then((data) => setArticles(data.articles));
     }, []);
-
-const dateString = '2023-03-31T16:22:21.7712116Z';
-const date = new Date(dateString);
-const formattedString = date.toLocaleString();
-
-console.log(formattedString); // Output: 3/31/2023, 4:22:21 PM
 
     
   console.log(articles[0]?.publishedAt)

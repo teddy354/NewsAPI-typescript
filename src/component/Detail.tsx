@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 import { Article } from '../utils/type'
+import dotenv from "dotenv";
 
 const { Meta } = Card;
 interface IDetail {
   utils: string;
 }
 
+dotenv.config();
+
 const App = ( props:IDetail ) => {
   const [articles, setArticles] = useState<Article[]>([]);
 
+    const apiUrl = "https://newsapi.org/v2/top-headlines";
+    const apiKey = "3b19ecc6f7a44cc1afc9ab92f4188ba8";
+    const source = "bbc-news";
+
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3b19ecc6f7a44cc1afc9ab92f4188ba8`
+    fetch(`${apiUrl}?sources=${source}&apiKey=${apiKey}`
+    //   `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3b19ecc6f7a44cc1afc9ab92f4188ba8`
     )
       .then((response) => response.json())
       .then((data) => setArticles(data.articles));
